@@ -18,7 +18,7 @@ You can install `grollm` via pip:
 
 ```python
 pip install grollm
-
+```
 ## For building package locally
 
 You can install `hatch` via pip:
@@ -26,3 +26,4 @@ You can install `hatch` via pip:
 ```python
 pip install hatch
 hatch build
+```
