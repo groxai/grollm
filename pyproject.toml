@@ -1,0 +1,43 @@
+[project]
+name = "grollm"
+
+version = "0.0.1"
+
+authors = [
+  { name="GroxAI", email="mail2groxai@gmail.com" },
+]
+
+description = "A Python package that simplifies interactions with LLM APIs like OpenAI, Google Gemini, and Anthropic. It features easy-to-use wrappers and integrates with MLflow for detailed token usage tracking."
+
+readme = "README.md"
+
+dependencies = [
+    "anthropic==0.34.0",
+    "pydantic==2.8.2",
+    "google-generativeai==0.7.2",
+    "openai==1.40.6",
+    "coloredlogs==15.0.1",
+    "mlflow==2.15.1",
+    "python-dotenv==1.0.1"
+]
+
+requires-python = ">=3.10"
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+license = {file = "LICENSE"}
+
+keywords = ["llm", "openai", "anthropic", "gemini", "llm wrapper"]
+
+[project.urls]
+Homepage = "https://github.com/groxai/grollm"
+Issues = "https://github.com/groxai/grollm/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
