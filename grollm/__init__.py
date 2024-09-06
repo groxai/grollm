@@ -1,5 +1,5 @@
 
-__version__ = "alpha-0.0.0"
+__version__ = "0.0.2a1"
 
 import os
 from .openai_gro import OpenAI_Grollm

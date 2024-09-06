@@ -1,7 +1,11 @@
 [project]
 name = "grollm"
 
-version = "0.0.1"
+dynamic = ["version"]
+
+[tool.hatch.version]
+path = "grollm/__init__.py"
+pattern = '^__version__ = "(?P<version>[a-zA-Z0-9\-\.]+)"$'
 
 authors = [
   { name="GroxAI", email="mail2groxai@gmail.com" },
@@ -41,3 +45,4 @@ Issues = "https://github.com/groxai/grollm/issues"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
