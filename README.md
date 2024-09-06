@@ -19,6 +19,19 @@ You can install `grollm` via pip:
 ```python
 pip install grollm
 ```
+
+## Getting Started
+
+Create a .env file locally wherever you want to use this package
+
+```python
+# api key required to be used respective packages
+
+OPENAI_API_KEY = "<openai-api-key>" Optional
+GEMINI_API_KEY = "<gemini-api-key>" Optional
+ANTHROPIC_API_KEY = "<claude-api-key>" Optional
+MLFLOW_DB_URI = "<mlflow-db-uri>" #Ex sqlite:///logs/mlflow.db
+```
 ## For building package locally
 
 You can install `hatch` via pip:
