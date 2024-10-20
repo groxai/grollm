@@ -11,15 +11,28 @@ def multiply_counters(counter1: Counter, counter2: Counter) -> Counter:
         result[key] = counter1[key] * counter2[key]
     return result
 
+def add_counters(dict1, dict2):
+    merged = Counter(dict1)  # Start with dict1 as the base
+    for key, value in dict2.items():
+        if key in merged and isinstance(merged[key], dict) and isinstance(value, dict):
+            # If both values are dictionaries, merge them recursively
+            merged[key] = add_counters(merged[key], value)
+        else:
+            # Otherwise, sum the values (or simply assign if non-numeric)
+            merged[key] += value if isinstance(value, (int, float)) else value
+    return merged
+
 class LLM_Base(ABC):
 
     def __init__(self, api_key: str, db_uri: str, experiment_name: str):
         self.api_key = api_key
         self.cumulative_tokens = Counter()
         self.cumulative_cost = Counter()
+        self.db_uri = db_uri
 
         if db_uri is not None:
-            import mlflow
+            global mlflow
+            import mlflow as mlflow
             self._initialize_mlflow(db_uri=db_uri, experiment_name=experiment_name)
 
     def _validate_cost(self, cost_dict: dict):
@@ -52,7 +65,7 @@ class LLM_Base(ABC):
             self = args[0]
             tokens_used = func(*args, **kwargs)
             if isinstance(tokens_used, dict):
-                self.cumulative_tokens += Counter(tokens_used)
+                self.cumulative_tokens = add_counters(tokens_used, self.cumulative_tokens)
             else:
                 self.cumulative_tokens['total'] += tokens_used
             
