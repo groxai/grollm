@@ -1,20 +1,19 @@
 [project]
 name = "grollm"
-
-dynamic = ["version"]
-
-[tool.hatch.version]
-path = "grollm/__init__.py"
-pattern = '^__version__ = "(?P<version>[a-zA-Z0-9\-\.]+)"$'
-
+description = "A Python package that simplifies interactions with LLM APIs like OpenAI, Google Gemini, and Anthropic. It features easy-to-use wrappers and integrates with MLflow for detailed token usage tracking."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+keywords = ["llm", "openai", "anthropic", "gemini", "llm wrapper"]
 authors = [
   { name="GroxAI", email="mail2groxai@gmail.com" },
 ]
-
-description = "A Python package that simplifies interactions with LLM APIs like OpenAI, Google Gemini, and Anthropic. It features easy-to-use wrappers and integrates with MLflow for detailed token usage tracking."
-
-readme = "README.md"
-
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 dependencies = [
     "anthropic==0.34.0",
     "pydantic==2.8.2",
@@ -25,18 +24,12 @@ dependencies = [
     "python-dotenv==1.0.1"
 ]
 
-requires-python = ">=3.10"
+dynamic = ["version"]
+[tool.hatch.version]
+path = "grollm/__init__.py"
+pattern = '^__version__ = "(?P<version>[a-zA-Z0-9\-\.]+)"$'
 
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
 
-license = {file = "LICENSE"}
-
-keywords = ["llm", "openai", "anthropic", "gemini", "llm wrapper"]
 
 [project.urls]
 Homepage = "https://github.com/groxai/grollm"
