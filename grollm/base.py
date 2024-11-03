@@ -1,39 +1,27 @@
 from abc import ABC, abstractmethod
 from functools import wraps
 from collections import Counter
-import uuid
 
-def multiply_counters(counter1: Counter, counter2: Counter) -> Counter:
-
-    common_keys = counter1.keys() & counter2.keys()
-    result = Counter()
-    for key in common_keys:
-        result[key] = counter1[key] * counter2[key]
-    return result
-
-def add_counters(dict1, dict2):
-    merged = Counter(dict1)  # Start with dict1 as the base
-    for key, value in dict2.items():
-        if key in merged and isinstance(merged[key], dict) and isinstance(value, dict):
-            # If both values are dictionaries, merge them recursively
-            merged[key] = add_counters(merged[key], value)
-        else:
-            # Otherwise, sum the values (or simply assign if non-numeric)
-            merged[key] += value if isinstance(value, (int, float)) else value
-    return merged
+from .utils import import_or_install, add_counters, multiply_counters
 
 class LLM_Base(ABC):
 
-    def __init__(self, api_key: str, db_uri: str, experiment_name: str):
+    def __init__(self, api_key: str, db_uri: str, mlflow_flag: bool, experiment_name: str):
         self.api_key = api_key
         self.cumulative_tokens = Counter()
         self.cumulative_cost = Counter()
+        self.mlflow_flag = mlflow_flag
         self.db_uri = db_uri
 
-        if db_uri is not None:
+        if self.mlflow_flag:
             global mlflow
-            import mlflow as mlflow
-            self._initialize_mlflow(db_uri=db_uri, experiment_name=experiment_name)
+            mlflow = import_or_install('mlflow')
+
+            if self.db_uri is not None:
+                self._initialize_mlflow(db_uri=db_uri, experiment_name=experiment_name)
+            else:
+                self.db_uri = "sqlite:///logs/mlflow.db"
+                self._initialize_mlflow(db_uri=db_uri, experiment_name=experiment_name)
 
     def _validate_cost(self, cost_dict: dict):
 
@@ -69,7 +57,7 @@ class LLM_Base(ABC):
             else:
                 self.cumulative_tokens['total'] += tokens_used
             
-            if self.db_uri is not None:
+            if self.mlflow_flag:
                 self._log_to_mlflow(tokens_used)
                 self._log_to_mlflow(self.tokens_session_cost)
             return tokens_used

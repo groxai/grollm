@@ -47,10 +47,11 @@ class OpenAI_Grollm(LLM_Base):
     
     def __init__(self, api_key: str = os.getenv('OPENAI_API_KEY'), 
                  db_uri: str = os.getenv('MLFLOW_DB_URI'),
+                 mlflow_flag: bool = False,
                  experiment_name: str = "LLM_Experiments_OPENAI", model: str = "gpt-3.5-turbo",
                  cost_store: CostStore = cs):
         
-        super().__init__(api_key=api_key, db_uri=db_uri, experiment_name=experiment_name)
+        super().__init__(api_key=api_key, db_uri=db_uri, mlflow_flag=mlflow_flag, experiment_name=experiment_name)
         self.model = model
         openai.api_key = os.getenv('OPENAI_API_KEY', api_key)
         self.cost_store = cost_store
