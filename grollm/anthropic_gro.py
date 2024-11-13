@@ -51,11 +51,12 @@ class Anthropic_Grollm(LLM_Base):
     
     def __init__(self, api_key: str = os.getenv('ANTHROPIC_API_KEY'), 
                  db_uri: str = os.getenv('MLFLOW_DB_URI'),
+                 mlflow_flag: bool = False,
                  experiment_name: str = "LLM_Experiments_ANTHROPIC", 
                  model: str = "claude-2.1",
                  cost_store: CostStore = cs):
         
-        super().__init__(api_key=api_key, db_uri=db_uri, experiment_name=experiment_name)
+        super().__init__(api_key=api_key, db_uri=db_uri, mlflow_flag=mlflow_flag, experiment_name=experiment_name)
         self.model = model
         self.client = anthropic.Anthropic(api_key=api_key)
         self.cost_store = cost_store

@@ -21,11 +21,12 @@ class Gemini_Grollm(LLM_Base):
     
     def __init__(self, api_key: str = os.getenv('GEMINI_API_KEY'), 
                  db_uri: str = os.getenv('MLFLOW_DB_URI'),
+                 mlflow_flag: bool = False,
                  experiment_name: str = "LLM_Experiments_GEMINI", 
                  model: str = 'gemini-1.0-pro-latest',
                  cost_store: CostStore = cs):
         
-        super().__init__(api_key=api_key, db_uri=db_uri, experiment_name=experiment_name)
+        super().__init__(api_key=api_key, db_uri=db_uri, mlflow_flag=mlflow_flag, experiment_name=experiment_name)
         gemini.configure(api_key=os.environ["GEMINI_API_KEY"])
         self.model = model
         self.gemini_client = gemini.GenerativeModel(self.model)
