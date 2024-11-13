@@ -58,6 +58,7 @@ class Gemini_Grollm(LLM_Base):
 
                 LOGGER.info("Received response from Google Gemini API.")
                 LOGGER.debug(f"Response: {response_text}")
+                return response_text
             except Exception as e:
                 LOGGER.error(f"An Google Gemini API error occurred: {e}")
                 raise
