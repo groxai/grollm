@@ -1,4 +1,5 @@
 # grollm
+![Jira FStack Logo](./images/9m42vusr.png)
 
 **grollm** is a Python package that simplifies interactions with major Large Language Model (LLM) APIs, including OpenAI, Google Gemini, and Anthropic. It features easy-to-use wrappers and integrates with MLflow for detailed token usage tracking.
 
@@ -34,9 +35,9 @@ MLFLOW_DB_URI = "<mlflow-db-uri>" #Optional, to use ml flow. Leave blank if not 
 ```
 ## For building package locally
 
-You can install `hatch` via pip:
+You can install `hatchling` via pip:
 
 ```python
-pip install hatch
-hatch build
+pip install hatchling
+hatchling build
 ```
