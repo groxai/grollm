@@ -1,4 +1,4 @@
-# grollm
+# GroLLM
 ![Jira FStack Logo](./images/9m42vusr.png)
 
 **grollm** is a Python package that simplifies interactions with major Large Language Model (LLM) APIs, including OpenAI, Google Gemini, and Anthropic. It features easy-to-use wrappers and integrates with MLflow for detailed token usage tracking.
