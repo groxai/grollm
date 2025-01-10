@@ -16,11 +16,12 @@ classifiers = [
 ]
 dependencies = [
     "anthropic==0.34.0",
-    "pydantic==2.8.2",
+    "pydantic>=2.8.2",
     "google-generativeai==0.7.2",
-    "openai==1.40.6",
+    "openai==1.55.3",
     "coloredlogs==15.0.1",
-    "python-dotenv==1.0.1"
+    "python-dotenv==1.0.1",
+	"httpx==0.27.2"
 ]
 
 dynamic = ["version"]
